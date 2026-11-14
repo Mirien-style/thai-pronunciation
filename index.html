@@ -175,6 +175,7 @@ function setView(view) {
 function speak(file, thaiText) {
   if (!file) { alert("這個字還沒有 mp3"); return; }
   var audio = new Audio("audio/" + file);
+  audio.playbackRate = 0.8;
   audio.play().catch(function() { alert("找不到 audio/" + file + "，請確認你已經把這個 mp3 上傳到 【entity-GitHub¦canonical_name=GitHub】 的 audio 資料夾裡面"); });
 }
 function getFiltered() {
