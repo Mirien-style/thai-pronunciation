@@ -162,12 +162,6 @@ consonants.forEach(function(cons) {
   });
 });
 var currentView = 'matrix';
-function setView(view) {
-  currentView = view;
-  document.getElementById('btnTable').className = 'view-btn' + (view === 'table' ? ' active' : '');
-  document.getElementById('btnMatrix').className = 'view-btn' + (view === 'matrix' ? ' active' : '');
-  render();
-}
 function speak(file, thaiText) {
   if (!file) { alert("這個字還沒有 mp3"); return; }
   var audio = new Audio("audio/" + file);
