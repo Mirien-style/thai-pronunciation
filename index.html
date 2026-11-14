@@ -220,7 +220,7 @@ function render() {
       body.appendChild(tr);
     });
   } else {
-    var headerRow = '<tr><th class="corner">母音 \\ 子音</th>';
+    var headerRow = '<tr><th class="corner"></th>';
     consonants.forEach(function(c) { headerRow += '<th class="cons-head">' + c.ch + '</th>'; });
     headerRow += '</tr>';
     head.innerHTML = headerRow;
