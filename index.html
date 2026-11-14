@@ -30,6 +30,12 @@
 <body>
 <h1>泰文基礎發音</h1>
 
+<div style="text-align:center; margin: 12px 0 16px 0;">
+  <select id="vowelSelect" onchange="render()" style="font-size:16px; padding:10px 14px; border-radius:10px; border:1px solid #ddd; min-width:220px;">
+    <option value="all">全部 28 個母音</option>
+  </select>
+</div>
+
 <div class="matrix-wrap" id="tableWrap">
   <table id="mainTable">
     <thead id="tableHead"></thead>
@@ -154,8 +160,11 @@ function render() {
   consonants.forEach(function(c) { headerRow += '<th class="cons-head">' + c.ch + '</th>'; });
   headerRow += '</tr>';
   head.innerHTML = headerRow;
+    var selectedVowel = document.getElementById('vowelSelect').value;
   vowels.forEach(function(vow) {
+    if (selectedVowel !== 'all' && vow.name !== selectedVowel) return;
     var tr = document.createElement('tr');
+    
     var rowHtml = '<td class="vowel-head">' + vow.name + '</td>';
     consonants.forEach(function(cons) {
       var found = null;
@@ -180,6 +189,15 @@ function render() {
     (function(btn) { btn.onclick = function() { speak(btn.getAttribute('data-file'), btn.getAttribute('data-thai')); }; })(btns[j]);
   }
 }
+  // 把 28 個母音填進下拉選單
+var vowelSelect = document.getElementById('vowelSelect');
+vowels.forEach(function(v) {
+  var opt = document.createElement('option');
+  opt.value = v.name;
+  opt.textContent = v.name + '  (' + v.descZh + ')';
+  vowelSelect.appendChild(opt);
+});
+
 render();
 </script>
 </body>
