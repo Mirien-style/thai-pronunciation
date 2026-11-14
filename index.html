@@ -36,10 +36,6 @@
 <body>
 <h1>🇹🇭 泰文基礎發音學習</h1>
 
-<div style="text-align:center; margin: 12px 0;">
-  <button class="view-btn active" id="btnTable" onclick="setView('table')">📋 表格模式</button>
-  <button class="view-btn" id="btnMatrix" onclick="setView('matrix')">🔲 矩陣模式（像 PDF）</button>
-</div>
 <div class="toolbar">
   <input id="searchInput" placeholder="🔍 搜尋泰文 / 拼音 / 中文 / 英文 / 備註，例如 กา / 烏鴉 / 盤子" oninput="render()">
   <select id="filterMean" onchange="render()">
@@ -165,7 +161,7 @@ consonants.forEach(function(cons) {
     words.push({ thai: thai, pinyin: pinyin, zh: zh, en: en, file: cons.code + "-" + String(vIdx+1).padStart(2,'0') + ".mp3", remark: remark, cons: cons.ch, vowel: vow.name });
   });
 });
-var currentView = 'table';
+var currentView = 'matrix';
 function setView(view) {
   currentView = view;
   document.getElementById('btnTable').className = 'view-btn' + (view === 'table' ? ' active' : '');
