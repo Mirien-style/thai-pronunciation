@@ -198,24 +198,7 @@ function render() {
   var head = document.getElementById('tableHead');
   var body = document.getElementById('tableBody');
   head.innerHTML = ''; body.innerHTML = '';
-  if (currentView === 'table') {
-    head.innerHTML = '<tr><th style="width:40px;">#</th><th>泰文</th><th>拼音</th><th>中文翻譯</th><th>英文翻譯</th><th style="width:90px;">播放</th><th>備註</th></tr>';
-    filtered.forEach(function(w, idx) {
-      var isNoMean = (w.zh === "無法翻譯");
-      var tr = document.createElement('tr');
-      if (!isNoMean) tr.className = 'has-mean';
-      var zhClass = isNoMean ? 'no-trans' : '';
-      var enClass = isNoMean ? 'no-trans' : '';
-      tr.innerHTML = '<td>' + (idx + 1) + '</td>' +
-        '<td class="thai">' + w.thai + '</td>' +
-        '<td class="pinyin">' + w.pinyin + '</td>' +
-        '<td class="' + zhClass + '">' + w.zh + '</td>' +
-        '<td class="' + enClass + '">' + w.en + '</td>' +
-        '<td><button class="play-btn" data-file="' + w.file + '" data-thai="' + w.thai + '">🔊 播放</button></td>' +
-        '<td class="remark">' + (w.remark || '') + '</td>';
-      body.appendChild(tr);
-    });
-  } else {
+  
     var headerRow = '<tr><th class="corner"></th>';
     consonants.forEach(function(c) { headerRow += '<th class="cons-head">' + c.ch + '</th>'; });
     headerRow += '</tr>';
