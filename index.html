@@ -43,17 +43,49 @@ thead th { min-width: 145px; }
 thead th.corner { min-width: 70px; }
 tbody td.vowel-head { min-width: 70px; }
   
+/* 2026.11.15新增以下 */
+.note-btn { font-size:16px; padding:10px 16px; border-radius:10px; border:1px solid #ddd; background:#fff; cursor:pointer; }
+.note-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.3); z-index:99; justify-content:center; align-items:flex-start; padding-top:80px; }
+.note-overlay.open { display:flex; }
+.note-box { background:#fffbe6; width:90%; max-width:420px; border-radius:14px; padding:18px 20px; box-shadow:0 10px 30px rgba(0,0,0,0.25); position:relative; }
+.note-close { position:absolute; top:8px; right:12px; border:none; background:none; font-size:22px; cursor:pointer; }
+.note-box h3 { margin:0 0 10px 0; }
+.note-box p { font-size:15px; line-height:1.6; color:#475569; margin:0; white-space:pre-line; }
+/* 2026.11.15新增以上 */
 </style>
 </head>
 <body>
-<h1>泰文基礎發音 <span class="author">網頁製作人:Mirien</span></h1>
-
-<div style="text-align:center; margin: 12px 0 16px 0;">
+<h1>泰文基礎發音 <span class="author">Product by Mirien</span></h1>
+<!-- 2026.11.15新增以下 -->
+<div style="text-align:center; margin: 12px 0 16px 0; display:flex; gap:10px; justify-content:center; align-items:center;">
   <select id="vowelSelect" onchange="render()" style="font-size:16px; padding:10px 14px; border-radius:10px; border:1px solid #ddd; min-width:220px;">
     <option value="all">全部 28 個母音</option>
   </select>
+  <button class="note-btn" onclick="openNote()">📝 筆記</button>
 </div>
 
+<div id="noteOverlay" class="note-overlay" onclick="if(event.target===this) closeNote()">
+  <div class="note-box">
+    <button class="note-close" onclick="closeNote()">✕</button>
+    <h3>📝 溫馨提醒</h3>
+       <p>ใ 只可以跟下面這 20 個子音搭配：
+ก จ ช ซ ด ต ท น บ ป ผ ฝ พ ฟ ม ย ร ล ว ห
+
+寫出來就是：
+ใก ใจ ใช ใซ ใต ใท ใน ใป ใผ ใฝ ใพ ใฟ ใม ใย ใร ใล ใว ให
+
+小提醒：
+這個表格只練 ก จ ด ต บ ป อ 這 7 個子音，
+所以 ใ 的 20 種裡面，這裡只會出現其中一部分，
+其他 13 種在這個表上看不到，是正常的。
+
+真正常用的 ใ 單字例如：
+ใจ 在 / 心、ใน 在裡面、ใบ 葉子、ใช่ 是、
+ให้ 給、用 ใช้ 使用、ใต้ 下面、ใด 哪一個、
+ใกล้ 靠近、ใคร 誰、ไล่ 追、ใย 纖維</p>
+  </div>
+</div>
+<!-- 2026.11.15新增以上 -->
 <div class="matrix-wrap" id="tableWrap">
   <table id="mainTable">
     <thead id="tableHead"></thead>
@@ -144,8 +176,47 @@ var meaningful = {
   "ใบ": { zh: "葉子 / 張", en: "Leaf / Sheet", remark: "" },
   "ไป": { zh: "去", en: "To go", remark: "" },
   "ไอ": { zh: "咳嗽 / 冰", en: "Cough / Ice", remark: "ไอศกรีม = 冰淇淋" },
-  "เกา": { zh: "抓癢", en: "To scratch", remark: "" }
+  "เกา": { zh: "抓癢", en: "To scratch", remark: "" },
+  //2026.11.15 新增以下
+  "เจอะ": { zh: "遇到", en: "Meet", remark: "" },
+  "เจอ": { zh: "見面", en: "Meet", remark: "" },
+  "กะ": { zh: "估計、將要", en: "Estimate / About to", remark: "" },
+  "กี่": { zh: "幾？", en: "How many?", remark: "" },
+  "กำ": { zh: "拳頭、握", en: "Fist / To grasp", remark: "" },
+  "จะ": { zh: "將要、會", en: "Will", remark: "" },
+  "เจาะ": { zh: "鑽、戳", en: "To drill / Pierce", remark: "" },
+  "จอ": { zh: "螢幕", en: "Screen", remark: "" },
+  "เจือ": { zh: "摻、稀釋", en: "To mix / Dilute", remark: "" },
+  "จำ": { zh: "記得", en: "To remember", remark: "" },
+  "ดุ": { zh: "兇", en: "Fierce", remark: "" },
+  "ดอ": { zh: "花（口語）", en: "Flower", remark: "" },
+  "ใด": { zh: "哪個", en: "Which", remark: "" },
+  "ดำ": { zh: "黑", en: "Black", remark: "" },
+  "เดา": { zh: "猜", en: "To guess", remark: "" },
+  "เตะ": { zh: "踢", en: "To kick", remark: "" },
+  "แตะ": { zh: "碰、觸摸", en: "To touch", remark: "" },
+  "โต": { zh: "大、長大", en: "Big / To grow", remark: "" },
+  "ตอ": { zh: "樹樁", en: "Stump", remark: "" },
+  "ตัว": { zh: "身體 / 量詞", en: "Body / Classifier", remark: "" },
+  "ตำ": { zh: "搗", en: "To pound", remark: "" },
+  "เตา": { zh: "爐子", en: "Stove", remark: "" },
+  "เบาะ": { zh: "椅墊、坐墊", en: "Cushion", remark: "" },
+  "บัว": { zh: "蓮花", en: "Lotus", remark: "" },
+  "เบา": { zh: "輕", en: "Light", remark: "" },
+  "แปะ": { zh: "貼", en: "To stick / Paste", remark: "" },
+  "เปอะ": { zh: "髒（沾到）", en: "Dirty / Stained", remark: "" },
+  "เปีย": { zh: "濕", en: "Wet", remark: "" },
+  "อึ": { zh: "大便", en: "Poop", remark: "" },
+  "อื": { zh: "嗯", en: "Hmm", remark: "" },
+  "เอ": { zh: "拿、要", en: "To take / Want", remark: "" },
+  "เออ": { zh: "嗯、對", en: "Yeah", remark: "" },
+  "อำ": { zh: "開玩笑、唬弄", en: "To tease / Joke", remark: "" },
+  "เอา": { zh: "拿、要", en: "To take / Want", remark: "" },
+  "อัวะ": { zh: "無法翻譯", en: "Cannot be translated", remark: "若要單獨依照字面發音，\"翻譯軟體\"無法依照正確規則發音，需真正的使用在一個詞彙或句子上就會按照規則發音" },
+  "อัว": { zh: "無法翻譯", en: "Cannot be translated", remark: "若要單獨依照字面發音，\"翻譯軟體\"無法依照正確規則發音，需真正的使用在一個詞彙或句子上就會按照規則發音" }
+  //2026.11.15 新增以上
 };
+var invalidWords = ["ใป", "ใต", "ใก"];
 var words = [];
 consonants.forEach(function(cons) {
   vowels.forEach(function(vow, vIdx) {
@@ -165,6 +236,14 @@ function speak(file, thaiText) {
   audio.playbackRate = 0.8;
   audio.play().catch(function() { alert("找不到 audio/" + file + "，請確認你已經把這個 mp3 上傳到 【entity-GitHub¦canonical_name=GitHub】 的 audio 資料夾裡面"); });
 }
+//2026.11.15 新增以下
+function openNote() {
+  document.getElementById('noteOverlay').classList.add('open');
+}
+function closeNote() {
+  document.getElementById('noteOverlay').classList.remove('open');
+}
+//2026.11.15 新增以上
 function getFiltered() {
   return words;
 }
@@ -189,14 +268,22 @@ function render() {
       if (!found) { rowHtml += '<td></td>'; return; }
       var inFiltered = filtered.indexOf(found) !== -1;
       if (!inFiltered) { rowHtml += '<td style="opacity:0.2;">-</td>'; return; }
+      //2026.11.15 新增以下
+      var isInvalid = invalidWords.indexOf(found.thai) !== -1;
       var isNoMean = (found.zh === "無法翻譯");
       var bg = isNoMean ? '' : 'background:#fffbf0;';
+      if (isInvalid) { bg = 'background:#e2e8f0; filter:grayscale(1); opacity:0.6;'; }
+      var zhText = isInvalid ? '沒有這樣的寫法' : found.zh;
+      var enText = isInvalid ? 'No such spelling' : found.en;
+      var remarkText = isInvalid ? '' : (found.remark || '');
+      var playBtnHtml = isInvalid ? '' : '<button class="play-btn" data-file="' + found.file + '" data-thai="' + found.thai + '" style="margin-top:6px;">🔊</button>';
       rowHtml += '<td style="' + bg + '"><div class="thai">' + found.thai + '</div>' +
         '<div class="pinyin">' + found.pinyin + '</div>' +
-        '<div style="font-size:13px;">' + found.zh + '</div>' +
-        '<div style="font-size:12px; color:#888;">' + found.en + '</div>' +
-        '<button class="play-btn" data-file="' + found.file + '" data-thai="' + found.thai + '" style="margin-top:6px;">🔊</button>' +
-        '<div class="remark" style="margin-top:4px;">' + (found.remark || '') + '</div></td>';
+        '<div style="font-size:13px;">' + zhText + '</div>' +
+        '<div style="font-size:12px; color:#888;">' + enText + '</div>' +
+        playBtnHtml +
+        '<div class="remark" style="margin-top:4px;">' + remarkText + '</div></td>';
+      //2026.11.15 新增以上
     });
     tr.innerHTML = rowHtml;
     body.appendChild(tr);
